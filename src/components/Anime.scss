@@ -1,0 +1,22 @@
+.Anime{
+    width: calc( 20% - 40px );
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: white;
+    min-height: 326px;
+    max-width: 230px;
+    .name{
+        text-align: center;
+        margin: 0 0 1rem;
+    }
+    .imagen{
+        display: block;
+        position: relative;
+        margin: 0 auto;
+    }
+    .year{
+        margin: 1rem 0 0;
+        text-align: center;
+    }
+}
