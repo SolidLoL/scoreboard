@@ -1,8 +1,8 @@
 import React, {useState,useEffect, Fragment} from 'react';
-import {Anime} from './Anime';
-import {Search} from './Search.js';
+import {AnimeCard} from '../AnimeCard';
+import {SearchAnime} from '../SearchAnime';
 import axios from 'axios';
-import './AnimeList.scss';
+import './style.scss';
 
 export const AnimeList = ()=> {
   const [animes, setanimes] = useState([])
@@ -14,13 +14,12 @@ export const AnimeList = ()=> {
         })
 
   },[])
-  console.log(animes)
   
     return (
       <Fragment>
-        <Search></Search>
+        <SearchAnime></SearchAnime>
       <div className = "AnimeList">
-        {animes.map(anime => <Anime key={anime.anilist_id} {...anime} />)}
+        {animes.map(anime => <AnimeCard key={anime.anilist_id} {...anime} />)}
       </div>
       </Fragment>
     )
