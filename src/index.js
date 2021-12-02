@@ -1,6 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AnimeList} from './components/AnimeList'
-import './styles/global.scss';
+// import {AnimeList} from '@components/AnimeList'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from '@routes/App';
+import reducer from './reducers';
 
-ReactDOM.render(<AnimeList />, document.getElementById('app'));
+import initialState from './initialState';
+
+const store = createStore(reducer, initialState);
+
+ReactDOM.render(  
+<Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('app'));
