@@ -6,13 +6,20 @@ module.exports = {
   entry: "./src/index.js",
   output: { 
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    publicPath: '/'
   },
   resolve: {
     extensions: [".js", ".jsx"],
     alias:{
         '@components': path.resolve(__dirname, 'src/components/'),
-        '@styles': path.resolve(__dirname, 'src/styles/')
+        '@styles': path.resolve(__dirname, 'src/styles/'),
+        '@hooks': path.resolve(__dirname, 'src/hooks/'),
+        '@reducers': path.resolve(__dirname, 'src/reducers/'),
+        '@routes': path.resolve(__dirname, 'src/routes/'),
+        '@containers': path.resolve(__dirname, 'src/containers/'),
+        '@context': path.resolve(__dirname, 'src/context/'),
+        '@assets': path.resolve(__dirname, 'src/assets/'),
     }
   },
   mode: 'development',
@@ -32,11 +39,23 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          {loader: 'style-loader'},
+          {loader:'css-loader'},
+          {loader:'sass-loader'}
         ]
-      }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+            limit: 10000,
+            name: '[name].[hash:7].[ext]'
+        }
+     },
+     {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset',
+    }
     ],
   },
   plugins: [
@@ -46,13 +65,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    })
+    }),
   ],
+  optimization:{
+    splitChunks:{
+      chunks:'all'
+    }
+  },
   devServer: {
     static: {
         directory: path.join(__dirname, "dist"),
     },
     compress: true,
+    historyApiFallback: true,
     port: 3006,
   },
 };

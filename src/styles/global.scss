@@ -1,8 +1,53 @@
 $background: #ffffffea;
 $color: rgba(black,0.9);
+$primary: #04B27E;
+$white:#CCCCCC;
 
+$breakpoints: (
+  'small':  767px,
+  'medium': 992px,
+  'large':  1200px
+) !default;
+
+@mixin respond-to($breakpoint){
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+ 
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+:root{
+    --primary-color: $primary;
+    --white: $white;
+}
+*:after,
+*:before{
+    box-sizing: border-box;
+}
 body{
     background-color: $background;
     color: $color;
+    margin: 0;
+    width: 100vw;
+    #app{
+        .Header{
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            @include respond-to('small') {
+            }
+        }
+    }
 }
 
