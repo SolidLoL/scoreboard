@@ -18,7 +18,8 @@ module.exports = {
         '@reducers': path.resolve(__dirname, 'src/reducers/'),
         '@routes': path.resolve(__dirname, 'src/routes/'),
         '@containers': path.resolve(__dirname, 'src/containers/'),
-        '@context': path.resolve(__dirname, 'src/context/')
+        '@context': path.resolve(__dirname, 'src/context/'),
+        '@assets': path.resolve(__dirname, 'src/assets/'),
     }
   },
   mode: 'development',
@@ -50,7 +51,11 @@ module.exports = {
             limit: 10000,
             name: '[name].[hash:7].[ext]'
         }
-     }
+     },
+     {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset',
+    }
     ],
   },
   plugins: [

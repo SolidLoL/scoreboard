@@ -20,7 +20,8 @@ module.exports = {
         '@reducers': path.resolve(__dirname, 'src/reducers/'),
         '@routes': path.resolve(__dirname, 'src/routes/'),
         '@containers': path.resolve(__dirname, 'src/containers/'),
-        '@context': path.resolve(__dirname, 'src/context/')
+        '@context': path.resolve(__dirname, 'src/context/'),
+        '@assets': path.resolve(__dirname, 'src/assets/'),
     }
   },
 
@@ -45,7 +46,11 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset',
+      },
     ],
   },
   plugins: [

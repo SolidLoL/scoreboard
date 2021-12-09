@@ -7,20 +7,12 @@ import './style.scss';
 
 export const AnimeList = ()=> {
   const animes  = useContext(AppContext)
-  /*const [animes, setanimes] = useState([])
-
-   useEffect(function () {
-      axios.get(`https://api.aniapi.com/v1/anime?status=1&genres=War&nsfw=true&per_page=4`)
-        .then(res => {
-          setanimes( res.data.data.documents );
-        })
-
-  },[]) */
+  console.log(animes)
     return (
       <Fragment>
         <SearchAnime></SearchAnime>
       <div className = "AnimeList">
-        {(typeof animes == undefined)? "error" : animes?.map(anime => <AnimeCard key={anime.anilist_id} anime = {anime} {...anime} />)}
+        {(typeof animes.animes == undefined)? "error" : animes.animes.map(anime => <AnimeCard key={anime.anilist_id} anime = {anime} {...anime} />)}
       </div>
       </Fragment>
     )

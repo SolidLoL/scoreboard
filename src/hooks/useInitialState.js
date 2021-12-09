@@ -27,6 +27,15 @@ const useInitialState = () => {
       animes: {},
       localization: {},
       genres: {},
+      catalog:{
+        0:"TV" ,
+        1:"TV_SHORT",
+        2:"MOVIE",
+        3:"SPECIAL",
+        4:"OVA",
+        5:"ONA",
+        6:"MUSIC"
+      }
     };
     //qUERY Data 
     const AsyncData = await axios(query);
@@ -36,10 +45,12 @@ const useInitialState = () => {
     response.sources = AsyncData.data.data.sources;
     response.genres = AsyncGenres.data.data.genres;
     response.localization = AsyncLocalization.data.data.localizations;
+    response.animes = responseAPI.data.data.documents;
+
     console.log(response);
 
     //setAnime(response.data);
-    setAnime(responseAPI.data.data.documents);
+    setAnime(response);
   }, []);
   return anime;
 };

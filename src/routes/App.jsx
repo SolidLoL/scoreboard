@@ -9,7 +9,7 @@ import "@styles/global.scss";
 import ErrorBoundary from "./ErrorBoundary";
 
 const AsyncSearchContainer = React.lazy(() =>import("@containers/Search.jsx"));
-console.log(AsyncSearchContainer);
+
  const App = () => {
   const initialState = useInitialState();
   const isEmpty = Object.keys(initialState).length;
