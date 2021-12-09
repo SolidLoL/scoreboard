@@ -6,7 +6,8 @@ module.exports = {
   entry: "./src/index.js",
   output: { 
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    publicPath: '/'
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -59,13 +60,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    })
+    }),
   ],
+  optimization:{
+    splitChunks:{
+      chunks:'all'
+    }
+  },
   devServer: {
     static: {
         directory: path.join(__dirname, "dist"),
     },
     compress: true,
+    historyApiFallback: true,
     port: 3006,
   },
 };
