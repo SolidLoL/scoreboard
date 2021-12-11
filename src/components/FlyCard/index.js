@@ -1,19 +1,21 @@
 import React , {useContext} from 'react'
 import {AppContext} from '@context/AppContext';
+import {Stars} from '@components/Stars'
 import './style.scss';
+import {Errorboundary} from '@routes/ErrorBoundary'
 
 export const FlyCard = () => {
     const animes  = useContext(AppContext)
     const first = animes.animes[0];
     const info = (first.descriptions.en.length > 0)? first.descriptions.en : first.descriptions.it;
     const first3 = first.genres.slice(0, 3);
-    console.log(first3)
+
+    console.log(<Stars score={first.score}/>)
     return(
-        <div className='fly-card'>
-         <img src={first.cover_image}></img>
+        <div className='fly-card' style={{backgroundImage:`url(${first.cover_image})`}}>
          <div className='title'>{first.titles.en}</div>
          <div className='stars-fly'>
-         {first.score}
+             <Stars score={first.score}/>
          </div>
          <div className='info'>
             <div className='type'>

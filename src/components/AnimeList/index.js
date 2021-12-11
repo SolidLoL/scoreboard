@@ -7,7 +7,6 @@ import './style.scss';
 
 export const AnimeList = ()=> {
   const animes  = useContext(AppContext)
-  console.log(animes)
     return (
       <Fragment>
         <SearchAnime></SearchAnime>

@@ -5,6 +5,7 @@ import { Layout } from "@components/Layout";
 import { Home } from "@containers/Home.jsx";
 import { NotFound } from "@containers/NotFound.jsx";
 import { AppContext } from "../context/AppContext";
+import { Loading } from '@components/Loading'
 import "@styles/global.scss";
 import ErrorBoundary from "./ErrorBoundary";
 
@@ -36,7 +37,7 @@ const AsyncSearchContainer = React.lazy(() =>import("@containers/Search.jsx"));
           </Suspense>
         
       ) : (
-        <h1>Cargando...</h1>
+        <Loading/>
       )}
     </>
   );

@@ -1,7 +1,10 @@
-$background: #ffffffea;
+@import '_reset';
+
+$black: #0E0F0E;
+$white:#CCCCCC;
+$background: $black;
 $color: rgba(black,0.9);
 $primary: #04B27E;
-$white:#CCCCCC;
 $min-padding : 16px;
 
 $breakpoints: (
