@@ -1,29 +1,85 @@
-.fly-card{
-    position: relative;
-    z-index: -1;
-    top: -72px;
-    margin: 0 0 -60px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    font-family: Rubik;
-    align-content: stretch;
-    justify-content: flex-end;
-    align-items: flex-start;
-    & > *{
-        margin: 1rem;
-        z-index: 2;
+.fly-card {
+  position: relative;
+  z-index: -1;
+  top: -72px;
+  margin: 0 0 -60px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  align-content: stretch;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 32px;
+  & > * {
+    margin: 1rem;
+    z-index: 2;
+  }
+  .title {
+    font-family: 'Rock Salt';
+    font-size: 36px;
+  }
+
+  .stars-fly {
+      & > *{
+        font-size: 40px;
+      }
+  }
+  .info {
+    .type {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      display: flex;
+      span{
+        display: flex;
+        svg{
+            margin: 0 1rem;
+        }
+      }
     }
-    &:after{
-        content:'';
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(180deg, rgba(20, 14, 18, 0) 0.01%, rgba(20, 14, 18, 0.84) 37.96%);
-        z-index: 1;
-        position: absolute;
+    .a-info {
+      width: auto;
+      height: 60px;
+      margin: 1rem 0;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #ffffff;
+      flex: none;
+      order: 3;
+      align-self: stretch;
+      flex-grow: 0;
     }
+    .genres {
+        font-size: 20px;
+        text-align: center;
+        display: flex;
+        svg{
+            margin: 0 1rem;
+        }
+    }
+  }
+
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 14, 18, 0) 0.01%,
+      rgba(20, 14, 18, 0.84) 37.96%
+    );
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }
