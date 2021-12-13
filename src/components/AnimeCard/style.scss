@@ -14,8 +14,8 @@
     position: relative;
     height: fit-content;
     margin-top: 10%;
+    width: calc((100vw - 65px));
     .image{
-        width: calc((100vw - 65px) / 4);
         height: 179px;
         overflow: hidden;
         border-radius: 15px;
