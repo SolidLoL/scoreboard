@@ -1,5 +1,5 @@
-@import '_reset';
 @import 'vars';
+@import "~bootstrap/scss/bootstrap";
 @font-face {
   font-family: 'Rubik',  'Rock Salt';
   font-weight: 500;
@@ -37,10 +37,6 @@
     box-sizing: border-box;
 }
 body{
-    background-color: $background;
-    color: $color;
-    margin: 0;
-    width: 100vw;
     #app{
         .Header{
             position: relative;
@@ -48,8 +44,6 @@ body{
             display: flex;
             flex-direction: column;
             height: auto;
-            @include respond-to('small') {
-            }
         }
     }
 }

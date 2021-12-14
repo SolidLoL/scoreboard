@@ -6,11 +6,15 @@ $color: rgba(black,0.9);
 $primary: #04B27E;
 $min-padding : 16px;
 
+$body-bg: #0E0F0E;
+$body-color: $white;
+
 $breakpoints: (
   'small':  767px,
   'medium': 992px,
   'large':  1200px
 ) !default;
+
 
 @mixin respond-to($breakpoint){
   // If the key exists in the map
