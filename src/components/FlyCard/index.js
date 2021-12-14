@@ -1,5 +1,6 @@
-import React , {useContext} from 'react'
+import React , {useContext, Fragment} from 'react'
 import {AppContext} from '@context/AppContext';
+import {Stars} from '@components/Stars'
 import './style.scss';
 
 export const FlyCard = () => {
@@ -7,19 +8,21 @@ export const FlyCard = () => {
     const first = animes.animes[0];
     const info = (first.descriptions.en.length > 0)? first.descriptions.en : first.descriptions.it;
     const first3 = first.genres.slice(0, 3);
-    console.log(first3)
+    const TheLine = ()=><svg width="2" height="26" margin="1rem" viewBox="0 0 2 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1V25" stroke="white" strokeLinecap="round"/>
+    </svg>;
+    
     return(
-        <div className='fly-card'>
-         <img src={first.cover_image}></img>
+    <div className='fly-card' style={{backgroundImage:`url(${first.cover_image})`}}>
          <div className='title'>{first.titles.en}</div>
          <div className='stars-fly'>
-         {first.score}
+             <Stars score={first.score}/>
          </div>
          <div className='info'>
             <div className='type'>
-                {animes.catalog[first?.format]} | {first?.episodes_count} episodes
+                {animes.catalog[first?.format]} <span><TheLine/></span> {first?.episodes_count} episodes
             </div>
-            <div className='info'>
+            <div className='a-info'>
                 {
                    info
                 }
@@ -30,14 +33,13 @@ export const FlyCard = () => {
 
                             switch (i) {
                                 case 1:
-                                    return element+"|";
+                                    return (<Fragment key={i}><span >{element}</span><TheLine/></Fragment>);
                                     break;
                                 case 2:
-                                    return element;
+                                    return (<Fragment key={i}><span >{element}</span></Fragment>);
                                     break;
-                            
                                 default:
-                                    return element+"|";
+                                    return (<Fragment key={i}><span>{element}</span><TheLine/></Fragment>);
                                     break;
                             }
                     })
@@ -45,6 +47,6 @@ export const FlyCard = () => {
             </div>
          </div>
         </div>
-    )
+        )
 }
 

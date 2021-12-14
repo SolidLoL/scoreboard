@@ -17,7 +17,6 @@ const INFO_DEFAULT = {
 export const AnimeCard = ({titles = INFO_DEFAULT.titles , cover_image = INFO_DEFAULT.cover_image , score= INFO_DEFAULT.score , anime}) =>{
 
     const scoretostars = (score) => {
-        console.log(score)
         return !(typeof score === 'number' && score <= 0)?  Math.round((5/100)*score) : 0;
     }
     
