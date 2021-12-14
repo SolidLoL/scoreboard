@@ -28,14 +28,6 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
-:root{
-    --primary-color: $primary;
-    --white: $white;
-}
-*:after,
-*:before{
-    box-sizing: border-box;
-}
 body{
     #app{
         .Header{
