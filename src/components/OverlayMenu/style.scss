@@ -1,0 +1,23 @@
+.overlay-menu{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bs-body-bg);
+    top: 0;
+    .overlay-header{
+        .close{
+            span{
+                padding: 1rem;
+                font-size: 2rem;
+                color: var(--bs-primary);
+            }
+        }
+    }
+    .overlay-body{
+        .nav{
+            .nav-item{
+                font-size: 2rem;
+            }
+        }
+    }
+}
