@@ -5,7 +5,7 @@ import './style.scss';
 
 export const FlyCard = () => {
     const animes  = useContext(AppContext)
-    const first = animes.animes[0];
+    const first = animes.animes[1];
     const info = (first.descriptions.en.length > 0)? first.descriptions.en : first.descriptions.it;
     const first3 = first.genres.slice(0, 3);
     const TheLine = ()=><svg width="2" height="26" margin="1rem" viewBox="0 0 2 26" fill="none" xmlns="http://www.w3.org/2000/svg">

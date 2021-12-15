@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
-export const OverlayMenu = ({ onOpen }) => {
+export const OverlayMenu = ({ onOpen}) => {
   return (
     <div className="overlay-menu d-flex flex-column align-items-center justify-content-start ">
       <div className="overlay-header align-self-start ">
-        <div className="close" onClick={onOpen}>
-          <span className="material-icons">close</span>
-        </div>
+        <div className="close" onClick={onOpen}></div>
       </div>
       <div className="overlay-body">
         <ul className="nav d-flex flex-column align-items-center" onClick={onOpen}>

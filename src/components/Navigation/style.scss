@@ -5,4 +5,10 @@
   &.bg-degrade{
     background: linear-gradient(180deg, #0b071b 0%, rgba(0, 0, 0, 0) 78.77%);
   }
+  .menu{
+    z-index: 1;
+  }
+  .navbar-brand{
+    z-index: 1;
+  }
 }

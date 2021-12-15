@@ -14,10 +14,9 @@ export const Hamburg = () => {
 
      return (
          <Fragment>
+                <div className='menu' onClick ={onOpen}> <HamburgIcon/></div>
             {
-                (open !== true)? (
-                    <div className='menu' onClick ={onOpen}> <HamburgIcon/></div>
-                ): (<OverlayMenu onOpen={onOpen} />)
+                open ?(<OverlayMenu onOpen={onOpen}></OverlayMenu>): (<></>)
             }
          </Fragment>
      )
