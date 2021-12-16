@@ -12,12 +12,11 @@ export const Stars = ({ score }) => {
       if (i < scoretostars) {
         r[i] = "star";
       } else {
-        r[i] = ((5 / 100) * score) % 1 > 0.49 ? "star_half" : "star_outline";
+        r[i] = (((5 / 100) * score) % 1 > 0.49 && 5-i > 1)? "star_half" : "star_outline";
       }
     }
     setStars(r);
   }, []);
-  console.log(stars);
   return (
     <Fragment>
       {stars?.map((e, i) => (

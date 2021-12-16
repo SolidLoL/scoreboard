@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Stars } from '@components/Stars'
 import './style.scss'
 
 const INFO_DEFAULT = {
@@ -16,9 +16,9 @@ const INFO_DEFAULT = {
 
 export const AnimeCard = ({titles = INFO_DEFAULT.titles , cover_image = INFO_DEFAULT.cover_image , score= INFO_DEFAULT.score , anime}) =>{
 
-    const scoretostars = (score) => {
+/*     const scoretostars = (score) => {
         return !(typeof score === 'number' && score <= 0)?  Math.round((5/100)*score) : 0;
-    }
+    } */
     
     const handleHover = (ev) => {
         // ev.preventDefault();
@@ -33,7 +33,7 @@ export const AnimeCard = ({titles = INFO_DEFAULT.titles , cover_image = INFO_DEF
             <div className="info-bottom">
             <div className="name">{titles.en}</div>
             <div className="stats-card">
-                <div className="score_stars">{scoretostars(score)}</div>
+                <div className="score_stars"><Stars score={score}/></div>
                 <div className="episodes">{ `${anime.episodes_count} episodes`} </div>
             </div>
             </div>

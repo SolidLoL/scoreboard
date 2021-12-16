@@ -47,8 +47,6 @@ const useInitialState = () => {
     response.localization = AsyncLocalization.data.data.localizations;
     response.animes = responseAPI.data.data.documents;
 
-    console.log(response);
-
     //setAnime(response.data);
     setAnime(response);
   }, []);

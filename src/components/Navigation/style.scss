@@ -1,19 +1,14 @@
-nav {
+.navbar {
   /* header */
-
-  /* Auto Layout */
-
-  display: flex !important;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: 72px;
-  left: 0px;
-  top: 0px;
-
   /* Degradado top */
 
-  background: linear-gradient(180deg, #0b071b 0%, rgba(0, 0, 0, 0) 78.77%);
+  &.bg-degrade{
+    background: linear-gradient(180deg, #0b071b 0%, rgba(0, 0, 0, 0) 78.77%);
+  }
+  .menu{
+    z-index: 1;
+  }
+  .navbar-brand{
+    z-index: 1;
+  }
 }
