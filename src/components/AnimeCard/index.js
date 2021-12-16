@@ -1,42 +1,22 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import { Stars } from '@components/Stars'
 import './style.scss'
 
-const INFO_DEFAULT = {
-    titles:{
-        en:'Cowboy Bebbop',
-        it:'Cowboy Bebbop',
-        jp:'Cowboy Bebbop'
-    },
-    score:'80',
-    episodes_count:'70',
-    cover_image:'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-CXtrrkMpJ8Zq.png',
-};
-
-
-export const AnimeCard = ({titles = INFO_DEFAULT.titles , cover_image = INFO_DEFAULT.cover_image , score= INFO_DEFAULT.score , anime}) =>{
-
-/*     const scoretostars = (score) => {
-        return !(typeof score === 'number' && score <= 0)?  Math.round((5/100)*score) : 0;
-    } */
-    
-    const handleHover = (ev) => {
-        // ev.preventDefault();
-        //console.log(ev)
-    }
+export const AnimeCard = ({anime}) =>{
 
     return (
-        <div className="AnimeCard" onMouseEnter={e =>handleHover(e)}>
+        <Link className="AnimeCard" to={`/anime/${anime.id}`}  >
             <div className="image">
-                <img src={cover_image}></img>
+                <img src={anime.cover_image}></img>
             </div>
             <div className="info-bottom">
-            <div className="name">{titles.en}</div>
+            <div className="name">{anime.titles.en}</div>
             <div className="stats-card">
-                <div className="score_stars"><Stars score={score}/></div>
+                <div className="score_stars"><Stars score={anime.score}/></div>
                 <div className="episodes">{ `${anime.episodes_count} episodes`} </div>
             </div>
             </div>
-        </div>
+        </Link>
     )
 }

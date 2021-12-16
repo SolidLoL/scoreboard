@@ -20,7 +20,6 @@ export const Navigation = () => {
       expand="lg"
       bg="degrade"
       variant="dark"
-      fixed="top"
     >
       <Container fluid>
         <Row>

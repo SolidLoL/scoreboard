@@ -1,4 +1,4 @@
-import React, {/* useState,useEffect, */ useContext, Fragment} from 'react';
+import React, { useContext, Fragment} from 'react';
 import {AppContext} from '@context/AppContext';
 import {AnimeCard} from '../AnimeCard';
 
