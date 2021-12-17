@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 import { AppContext } from "@context/AppContext";
 import { Stars } from "@components/Stars";
+import {useWindowSize} from '@hooks/useWindowSize';
 import "./style.scss";
 
 export const FlyCard = () => {
@@ -11,6 +12,9 @@ export const FlyCard = () => {
       ? first.descriptions.en
       : first.descriptions.it;
   const first3 = first.genres.slice(0, 3);
+
+  const window = useWindowSize();
+    let coverImage = (window.width > 768)? first.banner_image: first.cover_image;
   const TheLine = () => (
     <svg
       width="2"
@@ -27,7 +31,7 @@ export const FlyCard = () => {
   return (
     <div
       className="fly-card"
-      style={{ backgroundImage: `url(${first.cover_image})` }}
+      style={{ backgroundImage: `url(${coverImage})` }}
     >
       <div className="title">{first.titles.en}</div>
       <div className="stars-fly">

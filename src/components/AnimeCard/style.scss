@@ -1,45 +1,58 @@
-.AnimeCard{
-    &:hover{
-        transform: scale(1.2);
-        margin: 10% 50px;
-        cursor: pointer;
+.AnimeCard {
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  margin-top: 10%;
+  &:hover {
+    transform: scale(1.1);
+    margin: 5% 15px;
+    cursor: pointer;
+  }
+  .image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 15px;
+    img {
+      width: 100%;
+      height: auto;
+      transform: translateY(-35%);
     }
-    position: relative;
-    height: fit-content;
-    margin-top: 10%;
-    width: calc((100vw - 65px));
-    .image{
-        height: 179px;
-        overflow: hidden;
-        border-radius: 15px;
-        img{
-            width: 100%;
-            height: auto;
-            transform: translateY(-35%);
-        }
+  }
+  .info-bottom {
+    position: absolute;
+    width: -webkit-fill-available;
+    bottom: 0;
+    color: white;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 14, 18, 0) 0.01%,
+      rgba(20, 14, 18, 0.84) 41.96%
+    );
+    border-radius: 0px 0px 15px 15px;
+    height: 10ch;
+    .name {
+      margin: auto 0;
+      max-height: 35px;
+      overflow: hidden;
     }
-    .info-bottom{
-        position: absolute;
-        width: -webkit-fill-available;
-        bottom: 0;
-        color: white;
+    .stats-card {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .score_stars {
         display: flex;
-        align-content: center;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 16px;
-        background: linear-gradient(180deg, rgba(20, 14, 18, 0) 0.01%, rgba(20, 14, 18, 0.84) 41.96%);
-        border-radius: 0px 0px 15px 15px;
-        height: 60px;
-        .name{
-            margin: auto 0;
-            max-height: 35px;
-            overflow: hidden;
+        flex-direction: row;
+        & > * {
+          font-size: 16px;
         }
-        .stats-card{
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
+      }
     }
+  }
 }

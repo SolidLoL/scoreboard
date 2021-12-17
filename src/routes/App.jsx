@@ -4,10 +4,8 @@ import useInitialState from "@hooks/useInitialState";
 import { Layout } from "@components/Layout";
 import { Home } from "@containers/Home.jsx";
 import { NotFound } from "@containers/NotFound.jsx";
-//import Anime from "@containers/Anime.jsx";
 import { AppContext } from "../context/AppContext";
 import { Loading } from "@components/Loading";
-//import {AnimeInfo} from "@components/AnimeInfo";
 import "@styles/global.scss";
 // import ErrorBoundary from "./ErrorBoundary";
 

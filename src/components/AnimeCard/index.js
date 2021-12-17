@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { Stars } from '@components/Stars'
+import { Stars } from '@components/Stars';
 import './style.scss'
 
 export const AnimeCard = ({anime}) =>{

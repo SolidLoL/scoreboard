@@ -1,31 +1,37 @@
-import React, { Fragment } from "react";
-import { useParams, useNavigate  } from "react-router-dom";
-import  useAnimeInfo from '@hooks/useAnimeInfo';
-import {useWindowSize} from '@hooks/useWindowSize';
-import {Stars} from '@components/Stars';
+import React, { Fragment, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { Loading } from "@components/Loading";
+import { AppContext } from "@context/AppContext";
+import { AnimeInfo } from "@components/AnimeInfo";
+import { ListOfCapitules } from "@components/ListOfCapitules";
 
 const Anime = () => {
-    let params = useParams();
-    const info = useAnimeInfo(params.id);
-    const navigate = useNavigate();
-    const data = Object.entries(info).length > 0 ? info.anime.data : {};
-    const window = useWindowSize();
-    let coverImage = (window.width > 768)? data.banner_image: data.cover_image;
+  // const navigate = useNavigate();
+  const params = useParams();
+  const animeContext = useContext(AppContext);
+  const data = animeContext.animes.find((a) => {
+    if (a.id == params.id) {
+      console.log(a);
+      return a;
+    }
+  });
 
-console.log(data.score)
+  data.sources = {
+    id: data.id,
+    locale: animeContext.sources[0]["i18n"],
+    source: animeContext.sources[0].name,
+  };
+
   return (
     <Fragment>
-      <div className="container anime-info">
-        <div className="anime-info-header">
-            <div className="close" onClick={() => navigate(-1)}>
-                <span className="material-icons">close</span>
-            </div>
-        </div>
-        <div className="anime-info-body" style={{ backgroundImage: `url(${coverImage})` }}>
-          {typeof data.score != 'undefined'? (<Stars score={data?.score}/>): <></>}
-            <div className="title">{data.titles?.en}</div>
-        </div>
-      </div>
+      {Object.entries(data).length > 0 ? (
+        <Fragment>
+          <AnimeInfo data={data} />
+          <ListOfCapitules {...data} />
+        </Fragment>
+      ) : (
+        <Loading />
+      )}
     </Fragment>
   );
 };
