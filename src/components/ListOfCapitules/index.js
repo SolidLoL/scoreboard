@@ -1,35 +1,18 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import useListOfCapitules from '@hooks/useListOfCapitules'
+import {Capitule} from '@components/Capitule'
 import './style.scss'
 
 export const ListOfCapitules = ({ ...data }) => {
     console.log('Capitules')
-    const listofcapitules = useListOfCapitules(data?.sources);
-    const caps = listofcapitules?.capitules || [];
-
-    /* Componente Capitule */
-    const Capitules = ({ ...data }) => {
-        let empty = Object.entries(data).length > 0 ? true : false;
-        return (
-            <div className='capitule'>
-                {
-                    (empty) ? (
-                        <Fragment>
-                            <img src={data?.data?.cover_image}></img>
-                            <div className='episode'>episode {data.capitule.number}</div>
-                        </Fragment>
-                    ) : (<div></div>)
-                }
-            </div>
-        )
-    }
+    const {capitules,loading} = useListOfCapitules(data?.sources);
     return (
-        <div className='capitules'>
+        <div className='capitules-list'>
             {
-                (caps.length > 0)?caps.map((capitule, i) => {
-                    return (<Capitules key={i} capitule={capitule} data={data}></Capitules>)
+                (loading && capitules.length > 0)? capitules.map((capitule, i) => {
+                    return (<Capitule key={i} capitule={capitule} data={data}></Capitule>)
                 }) : <></>
-            }
+            } 
         </div>
     )
 }

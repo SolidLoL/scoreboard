@@ -11,11 +11,6 @@ const SOURCES_API = "https://api.aniapi.com/v1/resources";
 
 const useInitialState = () => {
   const [anime, setAnime] = useState([]);
-  //const [data , setdata] = useState();
-  /*     const useCountGenres = async(name) =>{
-        const API3 = `https://api.aniapi.com/v1/anime?status=1&genres=${name}`
-        return await axios(API3);
-    } */
 
   useEffect(async () => {
     const responseAPI = await axios(API);
