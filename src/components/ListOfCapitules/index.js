@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import useListOfCapitules from '@hooks/useListOfCapitules'
 import {Capitule} from '@components/Capitule'
 import './style.scss'

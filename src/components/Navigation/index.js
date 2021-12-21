@@ -5,15 +5,10 @@ import { Logo } from "@components/Logo";
 import Icon from "@assets/Icon.svg";
 import "./style.scss";
 
-import { Navbar, Container, Nav, Row, Offcanvas, Button } from "react-bootstrap";
+import { Navbar, Container,Row } from "react-bootstrap";
 
 export const Navigation = () => {
-  const [expand, setexpand] = useState();
-  const onExpand = () => {
-    if (!expand) {
-      setexpand(expand);
-    }
-  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -31,7 +26,7 @@ export const Navigation = () => {
           </Navbar.Brand>
         </Row>
         <Row >
-          <Link to="/search" className="mx-auto">
+          <Link to="/search" className="search mx-auto">
             <img src={Icon}></img>
           </Link>
         </Row>

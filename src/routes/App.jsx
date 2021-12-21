@@ -17,7 +17,7 @@ const App = () => {
   return (
     <>
       {isEmpty > 0 ? (
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<Loading />}>
           <AppContext.Provider value={initialState}>
             <BrowserRouter>
               <Layout>
