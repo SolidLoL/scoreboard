@@ -8,14 +8,9 @@ const GENRES = 0;
 const LOCALIZATIONS = 1;
 const SOUR = 2;
 const SOURCES_API = "https://api.aniapi.com/v1/resources";
-// const QUERY = 'anime?status=1&genres=War&nsfw=true&per_page=4';
+
 const useInitialState = () => {
   const [anime, setAnime] = useState([]);
-  //const [data , setdata] = useState();
-  /*     const useCountGenres = async(name) =>{
-        const API3 = `https://api.aniapi.com/v1/anime?status=1&genres=${name}`
-        return await axios(API3);
-    } */
 
   useEffect(async () => {
     const responseAPI = await axios(API);

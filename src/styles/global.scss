@@ -1,58 +1,36 @@
 @import 'vars';
 @import "~bootstrap/scss/bootstrap";
 
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-// @import "~bootstrap/scss/functions";
+/* Specify your own gutters for every breakpoint. I use media-breakpoint-up so to avoid a default width it's better to always include "xs", and then you can do whatever you want */
+/* $grid-Gutter-widths: (
+  xs: 64px,
+); */
 
-// // 2. Include any default variable overrides here
-// @import 'vars';
+/* You don't need to change anything below */
+/* @each $grid-breakpoint, $grid-Gutter-width in $grid-Gutter-widths {
+  @include media-breakpoint-up($grid-breakpoint) {
+    $grid-Gutter-half-width: $grid-Gutter-width / 2;
+    .row:not(.no-gutters) {
+      margin-right: -$grid-Gutter-half-width;
+      margin-left: -$grid-Gutter-half-width;
+    }
+    .row:not(.no-gutters) > .col,
+    .row:not(.no-gutters) > [class*="col-"] {
+      padding-right: $grid-Gutter-half-width;
+      padding-left: $grid-Gutter-half-width;
+    }
+  }
+} */
 
-// // 3. Include remainder of required Bootstrap stylesheets
-// @import "~bootstrap/scss/variables";
-// @import "~bootstrap/scss/mixins";
-// @import "~bootstrap/scss/root";
 
-// // 4. Include any optional Bootstrap CSS as needed
-// @import "~bootstrap/scss/utilities";
-// @import "~bootstrap/scss/reboot";
-// @import "~bootstrap/scss/type";
-// @import "~bootstrap/scss/images";
-// @import "~bootstrap/scss/containers";
-// @import "~bootstrap/scss/grid";
-// @import "~bootstrap/scss/helpers";
 
-// // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-// @import "~bootstrap/scss/utilities/api";
 
 
 @font-face {
   font-family: 'Rubik',  'Rock Salt';
   font-weight: 500;
 }
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
 
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-}
 body{
     #app{
         .Header{

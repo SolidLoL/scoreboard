@@ -1,24 +1,26 @@
-import React ,{useState,Fragment} from 'react'
-import {OverlayMenu} from '@components/OverlayMenu';
+import React, { useContext } from 'react'
+import Context from '@context/NavigationContext'
 
-const HamburgIcon = ()=>{ return (<svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 24H36V20H0V24ZM0 14H36V10H0V14ZM0 0V4H36V0H0Z" fill="#04B27E"/>
-</svg>)} 
+
+const HamburgIcon = () => {
+    return (
+        <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect className='top-menu' width="100%" height="2.70769" />
+            <rect className='middle-menu' height="2.70769" width="100%" x="0" y="10" rx="1.35385" />
+            <rect className='bottom-menu' x="0" y="20" width="100%" height="2.70769" rx="1.35385" />
+        </svg>
+    )
+}
 
 export const Hamburg = () => {
-    const [open, setopen] = useState(false);
+    const {openMenu, setopenMenu} = useContext(Context)
 
-    const onOpen= ()=>{
-        setopen(!open);
+    const handlerOpenMenu = () => {
+        setopenMenu(!openMenu);
     }
+    
+     let classMenu = (!openMenu) ? 'menu menu-close' : 'menu menu-open';
 
-     return (
-         <Fragment>
-                <div className='menu' onClick ={onOpen}> <HamburgIcon/></div>
-            {
-                open ?(<OverlayMenu onOpen={onOpen}></OverlayMenu>): (<></>)
-            }
-         </Fragment>
-     )
- }
- 
+    return (<div className={classMenu} onClick={handlerOpenMenu}> <HamburgIcon /></div>)
+}
+

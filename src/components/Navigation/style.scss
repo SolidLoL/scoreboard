@@ -1,14 +1,95 @@
+/* @keyframes rotate-menu-bottom {
+  0% {
+    transform-origin: 0% 0%;
+  }
+  100% {
+    transform-origin: 86% 84%;
+    transform: rotate(45deg);
+  }
+}
+@keyframes width-menu-middle {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes rotate-menu-top {
+  0% {
+    transform-origin: 0% 0%;
+  }
+  100% {
+    transform-origin: calc(100% - 10%) 10%;
+    transform: rotate(-45deg);
+  }
+} */
+
 .navbar {
   /* header */
   /* Degradado top */
 
-  &.bg-degrade{
+  &.bg-degrade {
     background: linear-gradient(180deg, #0b071b 0%, rgba(0, 0, 0, 0) 78.77%);
   }
-  .menu{
+  .menu {
+    z-index: 2;
+    &:hover {
+      cursor: pointer;
+    }
+    &[class*="menu-"] svg {
+      [class$="-menu"]{
+        transform-box: view-box;
+        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
+        fill: var(--bs-white);
+      }
+    }
+    &.menu-open {
+      .top-menu {
+        transition: transform 400ms;
+        transition-delay: 100ms;
+        transform-origin: 87% 35%;
+        transform: rotate(-45deg);
+      }
+      .middle-menu {
+        transition: transform 200ms;
+        transition-delay: 50ms;
+        transform-origin: 50% 40%;
+        transform: scale(0.1, 1);
+      }
+      .bottom-menu {
+        transition: transform 400ms;
+        transition-delay: 100ms;
+        transform-origin: 80% 70%;
+        transform: rotate(45deg);
+      }
+    }
+
+    &.menu-close {
+      .top-menu {
+        transition: transform 400ms;
+        transition-delay: 100ms;
+        transform-origin: 87% 35%;
+        transform: rotate(0deg);
+      }
+      .middle-menu {
+        transition: transform 200ms;
+        transition-delay: 200ms;
+        transform-origin: 50% 40%;
+        transform: scale(1, 1);
+      }
+      .bottom-menu {
+        transition: transform 400ms;
+        transition-delay: 100ms;
+        transform-origin: 80% 70%;
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .navbar-brand {
     z-index: 1;
   }
-  .navbar-brand{
-    z-index: 1;
+  .search {
+    z-index: 0;
   }
 }
