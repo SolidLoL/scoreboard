@@ -1,4 +1,4 @@
-@keyframes rotate-menu-bottom {
+/* @keyframes rotate-menu-bottom {
   0% {
     transform-origin: 0% 0%;
   }
@@ -23,7 +23,8 @@
     transform-origin: calc(100% - 10%) 10%;
     transform: rotate(-45deg);
   }
-}
+} */
+
 .navbar {
   /* header */
   /* Degradado top */
@@ -36,28 +37,29 @@
     &:hover {
       cursor: pointer;
     }
+    &[class*="menu-"] svg {
+      [class$="-menu"]{
+        transform-box: view-box;
+        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
+        fill: var(--bs-white);
+      }
+    }
     &.menu-open {
       .top-menu {
         transition: transform 400ms;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
-        transition-delay: 200ms;
-        transform-box: view-box;
+        transition-delay: 100ms;
         transform-origin: 87% 35%;
         transform: rotate(-45deg);
       }
       .middle-menu {
         transition: transform 200ms;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
-        transition-delay: 100ms;
-        transform-box: view-box;
+        transition-delay: 50ms;
         transform-origin: 50% 40%;
         transform: scale(0.1, 1);
       }
       .bottom-menu {
         transition: transform 400ms;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
-        transition-delay: 200ms;
-        transform-box: view-box;
+        transition-delay: 100ms;
         transform-origin: 80% 70%;
         transform: rotate(45deg);
       }
@@ -66,25 +68,19 @@
     &.menu-close {
       .top-menu {
         transition: transform 400ms;
-        transform-box: view-box;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
-        transition-delay: 200ms;
+        transition-delay: 100ms;
         transform-origin: 87% 35%;
         transform: rotate(0deg);
       }
       .middle-menu {
-        transition: transform 500ms;
-        transform-box: view-box;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
+        transition: transform 200ms;
         transition-delay: 200ms;
-        transform-origin: 0% 40%;
+        transform-origin: 50% 40%;
         transform: scale(1, 1);
       }
       .bottom-menu {
         transition: transform 400ms;
-        transform-box: view-box;
-        transition-timing-function: cubic-bezier(0.4, -0.54, 0.56, 1.45);
-        transition-delay: 200ms;
+        transition-delay: 100ms;
         transform-origin: 80% 70%;
         transform: rotate(0deg);
       }
@@ -94,6 +90,6 @@
     z-index: 1;
   }
   .search {
-    z-index: 2;
+    z-index: 0;
   }
 }
