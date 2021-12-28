@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const API =
-  "https://api.aniapi.com/v1/anime?status=1&genres=War&nsfw=true&per_page=4";
+  "https://api.aniapi.com/v1/anime?status=1&nsfw=true&per_page=4";
 const V = "1.0";
 const GENRES = 0;
 const LOCALIZATIONS = 1;

@@ -18,7 +18,8 @@ export const NavSearch = () => {
     }
 
     let ClassName = (search) ? 'overlay' : '';
-
+    let ClassChange = (value)? 'visible': 'invisible';
+    let BorderChange = (value)? 'rounded-top':'rounded';
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
@@ -27,6 +28,10 @@ export const NavSearch = () => {
     const handleChange = (ev) => {
         setvalue(ev);
     }
+    const handlerBackspace = () => {
+        setValue('')
+    }
+    
 
     return (
         <div className={`search-navigation ${ClassName}`}>
@@ -35,17 +40,16 @@ export const NavSearch = () => {
             </div>
             <div className={`overlay-search ${ClassName}`}>
                 <div className='overlay-search-header'>
-                    <span className="material-icons">
-                        search
-                    </span>
+                    <div className={`w-100 d-flex group-input-search ${BorderChange}`}>
+                    <span className="material-icons search" onClick={handleSubmit}>search</span>
                     <input className="input-search" type="text" value={value} onChange={e => handleChange(e.target.value)} />
-                    <div className="maybe-list">
-                        <ul>
-
-                        </ul>
+                    <span className="material-icons delete" onClick={handlerBackspace}>backspace</span>
                     </div>
+                    <span onClick={handlerSearch} className="material-icons close text-primary">close</span>
                 </div>
-                <div className='overlay-search-body'></div>
+                <div className={`overlay-search-body rounded-bottom ${ClassChange}`}>
+                    <div className='w-100 item-value'>{value}</div>
+                </div>
             </div>
         </div>
     )
