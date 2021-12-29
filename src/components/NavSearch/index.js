@@ -1,5 +1,9 @@
-import React, { useContext, useState } from 'react'
-import Context from '@context/NavigationContext'
+import React, { useContext, useState, useEffect, Fragment } from 'react'
+import Context from '@context/NavigationContext';
+import {Spinner} from '@components/Spinner';
+import axios from "axios";
+import Fuse from 'fuse.js';
+import { useNavigate } from "react-router-dom";
 import './style.scss';
 
 const IconSearch = () => {
@@ -10,29 +14,63 @@ const IconSearch = () => {
 
 
 export const NavSearch = () => {
+    // context and state of search navigation / keywordvalue
     const { search, setsearch } = useContext(Context)
     const [value, setvalue] = useState("")
 
-    const handlerSearch = () => {
-        setsearch(!search);
-    }
+    const [animeList, setanimeList] = useState([])
+    const [loading, setloading] = useState(false);
 
+    // Fuse.js To improb the search 
+    const options = {
+        includeScore: false,
+        // Search in `author` and in `tags` array
+        keys: ['titles.en']
+      }
+
+    
+    // Named events on Search Objects
     let ClassName = (search) ? 'overlay' : '';
-    let ClassChange = (value)? 'visible': 'invisible';
-    let BorderChange = (value)? 'rounded-top':'rounded';
+    let ClassChange = (value) ? 'visible' : 'invisible';
+    let BorderChange = (value) ? 'rounded-top' : 'rounded';
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault();
-        console.log(`the name ${value}`);
-    }
-    const handleChange = (ev) => {
-        setvalue(ev);
-    }
-    const handlerBackspace = () => {
-        setValue('')
+    const eventSearch = (keyword) => {
+        if(keyword){
+            setloading(true);
+            const API = `https://api.aniapi.com/v1/anime?title=${value}&nsfw=true&per_page=3`;
+            axios.get(API)
+            .then(res => {
+                setloading(false);
+                const fuse = (res.data.data.documents.length > 0)? new Fuse(res.data.data.documents, options) : [];
+                const result = fuse.search(`^=${keyword}`)
+                setanimeList(result);
+            })
+        }
     }
     
 
+    // HandlerEvent on Search
+    const handlerSearch = () => {
+        setsearch(!search);
+    }
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
+        eventSearch(value);
+    }
+    const handleChange = (ev) => {
+        setvalue(ev);
+        setTimeout(()=>{
+            eventSearch(value)  
+        } ,1000);
+    }
+    const handlerBackspace = () => {
+        setvalue('')
+    }
+    // HandlerEvent on Click Results
+    let navigate = useNavigate();
+
+
+    // Return Component
     return (
         <div className={`search-navigation ${ClassName}`}>
             <div className='icon-container' onClick={handlerSearch}>
@@ -41,15 +79,20 @@ export const NavSearch = () => {
             <div className={`overlay-search ${ClassName}`}>
                 <div className='overlay-search-header'>
                     <div className={`w-100 d-flex group-input-search ${BorderChange}`}>
-                    <span className="material-icons search" onClick={handleSubmit}>search</span>
-                    <input className="input-search" type="text" value={value} onChange={e => handleChange(e.target.value)} />
-                    <span className="material-icons delete" onClick={handlerBackspace}>backspace</span>
+                        <span className="material-icons search" onClick={handleSubmit}>search</span>
+                        <input className="input-search" type="text" value={value} onChange={e => handleChange(e.target.value)} />
+                        <span className="material-icons delete" onClick={handlerBackspace}>backspace</span>
                     </div>
                     <span onClick={handlerSearch} className="material-icons close text-primary">close</span>
                 </div>
                 <div className={`overlay-search-body rounded-bottom ${ClassChange}`}>
-                    <div className='w-100 item-value'>{value}</div>
+                    {!loading ? animeList.map((anime)=>{
+                        return (<div onClick={()=>{navigate(`anime/${anime.item.id}`);             setsearch(!search);
+                        setvalue('')
+                        setanimeList([]);}} key={anime.item.id} className='w-100 item-value'>{anime.item.titles.en}</div>);
+                    }) : <div className='w-100 item-value'>{value}</div>}
                 </div>
+                    {loading? <Spinner/> : <></>}
             </div>
         </div>
     )

@@ -24,6 +24,10 @@
   .title {
     font-family: 'Rock Salt';
     font-size: 36px;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    height: 110px;
+    overflow: hidden;
   }
 
   .stars-fly {
