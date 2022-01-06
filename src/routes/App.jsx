@@ -10,6 +10,8 @@ import "@styles/global.scss";
 // import ErrorBoundary from "./ErrorBoundary";
 
 const AsyncAnimeContainer = React.lazy(() => import("@containers/Anime.jsx"));
+const AsyncAnimeWhatch = React.lazy(() => import("@containers/WatchAnime.jsx"));
+
 
 const App = () => {
   const initialState = useInitialState();
@@ -24,6 +26,7 @@ const App = () => {
                 <Routes>
                   <Route exact path="/" element={<Home />} />
                   <Route path="anime/:id" element={<AsyncAnimeContainer />}/>
+                  <Route path="anime/:id/:episode" element={<AsyncAnimeWhatch/>} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Outlet />

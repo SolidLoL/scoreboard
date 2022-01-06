@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 import { AppContext } from "@context/AppContext";
 import { Stars } from "@components/Stars";
+import { Button } from "@components/Button";
 import {useWindowSize} from '@hooks/useWindowSize';
 import "./style.scss";
 
@@ -27,6 +28,7 @@ export const FlyCard = () => {
       <path d="M1 1V25" stroke="white" strokeLinecap="round" />
     </svg>
   );
+
 
   return (
     <div
@@ -75,6 +77,10 @@ export const FlyCard = () => {
             }
           })}
         </div>
+      </div>
+      <div className="actions d-flex flex-sm-row flex-column align-items-center w-100">
+          <Button type={"primary w-100 my-3 my-sm-0 me-sm-3"} title={"Watch Anime"} url={"anime/11/1"}/>
+          <Button type={"outline-primary w-100"} title={"Detail"} url={"anime/11"}/>
       </div>
     </div>
   );

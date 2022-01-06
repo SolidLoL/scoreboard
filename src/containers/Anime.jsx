@@ -40,7 +40,6 @@ const Anime = () => {
       )}
     </Fragment>
   );
-  return (<></>);
 };
 
 export default Anime;
