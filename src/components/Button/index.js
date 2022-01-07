@@ -5,5 +5,5 @@ export const Button = (props) => {
 
     const { title, type, url } = props;
 
-    return (<Link to={url} className={`btn btn-${type}`}>{title}</Link>)
+    return (<Link to={url} className={`btn btn-${type} text-white`}>{title}</Link>)
 }

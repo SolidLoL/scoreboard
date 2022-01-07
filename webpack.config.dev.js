@@ -55,6 +55,12 @@ module.exports = {
      {
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
       type: 'asset',
+    },
+    {
+      test: /.(mov|mp4)$/,
+      use: [
+          'url-loader'
+      ]
     }
     ],
   },
@@ -79,6 +85,12 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     port: 3006,
+    headers: [
+      {
+        key: 'Set-Cookie',
+        value: 'SameSite=None; Secure',
+      }
+    ],
   },
 };
 

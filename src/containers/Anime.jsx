@@ -26,14 +26,14 @@ const Anime = () => {
   }, [setData])
 
   // Busca si se encuentra el anime en el context si no se encuentra tendria que buscarlo en el API con useAnime info({params=[ id del anime]})
-
+ 
 
   return (
     <Fragment>
       {Object.entries(data).length > 0 ? (
         <Fragment>
           <AnimeInfo data={data} />
-          <ListOfCapitules {...data} />
+          <ListOfCapitules data={data} />
         </Fragment>
       ) : (
         <Loading />

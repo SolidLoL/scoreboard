@@ -2,7 +2,7 @@ import React from "react";
 import { Hamburg } from "@components/Hamburg";
 import { Logo } from "@components/Logo";
 import { OverlayMenu } from '@components/OverlayMenu';
-import {NavSearch} from '@components/NavSearch';
+import { NavSearch } from '@components/NavSearch';
 import "./style.scss";
 
 import { NavigationContextProvider } from "@context/NavigationContext.js";
@@ -10,8 +10,9 @@ import { NavigationContextProvider } from "@context/NavigationContext.js";
 import { Navbar, Container, Row } from "react-bootstrap";
 
 export const Navigation = () => {
+
   return (
-    <NavigationContextProvider>
+    <NavigationContextProvider >
       <Navbar
         collapseOnSelect
         expand="lg"
@@ -29,7 +30,7 @@ export const Navigation = () => {
             </Navbar.Brand>
           </Row>
           <Row >
-            <NavSearch/>
+            <NavSearch />
           </Row>
         </Container>
       </Navbar>

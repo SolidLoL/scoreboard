@@ -29,7 +29,6 @@ export const FlyCard = () => {
     </svg>
   );
 
-
   return (
     <div
       className="fly-card"
@@ -79,8 +78,8 @@ export const FlyCard = () => {
         </div>
       </div>
       <div className="actions d-flex flex-sm-row flex-column align-items-center w-100">
-          <Button type={"primary w-100 my-3 my-sm-0 me-sm-3"} title={"Watch Anime"} url={"anime/11/1"}/>
-          <Button type={"outline-primary w-100"} title={"Detail"} url={"anime/11"}/>
+          <Button type={"primary w-100 my-3 my-sm-0 me-sm-3"} title={"Watch Anime"} url={`anime/${first.id}/1`}/>
+          <Button type={"outline-primary w-100"} title={"Detail"} url={`anime/${first.id}`}/>
       </div>
     </div>
   );
