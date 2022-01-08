@@ -11,7 +11,7 @@ const SOURCES_API = "https://api.aniapi.com/v1/resources";
 
 const useInitialState = () => {
   const [anime, setAnime] = useState([]);
-
+  
   useEffect(async () => {
     const responseAPI = await axios(API);
     const query = `${SOURCES_API}/${V}/${SOUR}`;
@@ -41,7 +41,6 @@ const useInitialState = () => {
     response.genres = AsyncGenres.data.data.genres;
     response.localization = AsyncLocalization.data.data.localizations;
     response.animes = responseAPI.data.data.documents;
-
     //setAnime(response.data);
     setAnime(response);
   }, []);

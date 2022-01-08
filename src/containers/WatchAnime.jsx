@@ -1,45 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useParams} from "react-router-dom";
 import { Spinner } from "@components/Spinner";
-import ReactPlayer from 'react-player';
+import {VideoPlayer} from "@components/VideoPlayer"
 import useCapitule from "@hooks/useCapitule";
 
-const VideoPlayer = ({video}) => {
-    console.log(video)
-  /*   const [playerState, setPlayerState] = useState({
-        isPlaying: false,
-        progress: 0,
-        speed: 1,
-        isMuted: false,
-      });
-      const togglePlay = () => {
-        setPlayerState({
-          ...playerState,
-          isPlaying: !playerState.isPlaying,
-        });
-      };
-      useEffect(() => {
-        playerState.isPlaying
-          ? videoElement.current.play()
-          : videoElement.current.pause();
-      }, [playerState.isPlaying, videoElement]); */
-      console.log(ReactPlayer.canPlay(video.video))
-
-  return (
-      <ReactPlayer url={`${video.video}`} />
-  ); 
-};
 const WhatchAnime = () => {
   const { id, episode } = useParams();
-  const [data, setData] = useState({});
-  const cap = useCapitule(id,episode).shift();
-
-    console.log(cap)
+  //const { state } = ;
+  // const [data, setData] = useState({});
+  const storage = localStorage.getItem('capitule');
+  const capitule = !(storage)? useCapitule(id,episode).shift() : JSON.parse(storage);
+  
   return (
       <>
-      { !cap ? <Spinner /> : 
-        <VideoPlayer video={cap} />
-      }
+      { !capitule ? <Spinner /> : 
+        <VideoPlayer video={capitule} />
+       }
       </>
   );
 };

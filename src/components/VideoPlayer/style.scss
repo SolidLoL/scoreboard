@@ -1,0 +1,61 @@
+$bigFontSize: 64px;
+$mediumFontsize: 48px;
+@mixin spanSizer($font-size: 64px) {
+    span{
+        font-size: $font-size;
+    }
+}
+.player-wraper{
+    video{
+
+    }
+    .controlls{
+        z-index: 10;
+        bottom: 0;
+        padding: 2rem 0;
+        background: linear-gradient(180deg, rgba(20, 14, 18, 0) 0.01%, rgba(20, 14, 18, 0.84) 37.96%);
+        .duration{}
+        .play-controlls{
+            .capitule{
+                .time-lapsed{
+                    font-size: 20px;
+                }
+                .episode-info{
+                    width: calc(100% - 40%);
+                    .name{
+                        font-size: 20PX;
+                        max-width: 70%;
+                        height: 24px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                    .number{
+                        font-size: 16px;
+                    }
+                }
+            }
+            .buttons{
+                .re-init{
+                    @include spanSizer($mediumFontsize);
+                }
+                .rewind{
+                    @include spanSizer($mediumFontsize);
+                }
+                .play{
+                    margin: 0 1.5rem;
+                    @include spanSizer;
+                    /* span{
+                        font-size: $bigFontSize;
+                    } */
+                }
+                .forward{
+                    @include spanSizer($mediumFontsize);
+                }
+                .list-capitules{
+                    @include spanSizer($mediumFontsize);
+                }
+            }
+        }
+    }
+}
