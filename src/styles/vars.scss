@@ -1,34 +1,32 @@
-
-$black: #0E0F0E;
-$white:#CCCCCC;
+$black: #0e0f0e;
+$white: #cccccc;
 $gray-900: #202221;
 $gray-800: #303232;
 $gray-700: #181818;
 $gray-600: #676767;
-$gray-300: #B0B4B2;
+$gray-300: #b0b4b2;
 $border-radius: 5px;
 
 $background: $black;
 $color: $gray-300;
-$primary: #56AD93;
-$min-padding : 16px;
+$primary: #56ad93;
+$min-padding: 16px;
 
 $grid-gutter-width: 4rem;
 
- 
-$body-bg: #0E0F0E;
+$body-bg: #0e0f0e;
 $body-color: $white;
 
 $breakpoints: (
-  'small':  767px,
-  'medium': 992px,
-  'large':  1200px
+  "small": 767px,
+  "medium": 992px,
+  "large": 1200px,
 ) !default;
 
-$navbar-dark-toggler-border-color: rgba(0,0,0,0);
-$navbar-dark-brand-hover-color: rgba(0,0,0,0);
+$navbar-dark-toggler-border-color: rgba(0, 0, 0, 0);
+$navbar-dark-brand-hover-color: rgba(0, 0, 0, 0);
 
-@mixin respond-to($breakpoint){
+@mixin respond-to($breakpoint) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $breakpoint) {
     // Prints a media query based on the value
@@ -36,7 +34,7 @@ $navbar-dark-brand-hover-color: rgba(0,0,0,0);
       @content;
     }
   }
- 
+
   // If the key doesn't exist in the map
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
@@ -44,3 +42,19 @@ $navbar-dark-brand-hover-color: rgba(0,0,0,0);
   }
 }
 
+/*inputs[range]*/
+$form-range-track-width: 100%;
+$form-range-track-height: 0.5rem;
+$form-range-track-cursor: pointer;
+$form-range-track-bg: $gray-800;
+$form-range-track-border-radius: 1rem;
+// $form-range-track-box-shadow: $box-shadow-inset;
+
+$form-range-thumb-width: 1rem;
+// $form-range-thumb-height: $form-range-thumb-width;
+// $form-range-thumb-bg: $component-active-bg;
+$form-range-thumb-border: 0;
+$form-range-thumb-border-radius: 1rem;
+// $form-range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($black, 0.1);
+// $form-range-thumb-focus-box-shadow: 0 0 0 1px $body-bg, $input-focus-box-shadow;
+// $form-range-thumb-focus-box-shadow-width: $input-focus-width;
