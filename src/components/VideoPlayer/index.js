@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { findDOMNode } from 'react-dom'
 import { useNavigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { Controlls } from './Controlls';
+import screenfull from "screenfull";
 import "./style.scss";
 
 export const VideoPlayer = ({ video }) => {
@@ -19,7 +21,8 @@ export const VideoPlayer = ({ video }) => {
         duration: 0,
         playbackRate: 1.0,
         loop: false,
-        seeking: false
+        seeking: false,
+        navigate: false
     })
 
     const [orientation, setorientation] = useState(0)
@@ -43,7 +46,9 @@ export const VideoPlayer = ({ video }) => {
             pip: false
         })
     }
-
+    const handleToggleNavigate = () => {
+        setoptions({ ...options, navigate: !options.navigate })
+    }
     const handlePlayPause = () => {
         setoptions({ ...options, playing: !options.playing })
     }
@@ -58,15 +63,7 @@ export const VideoPlayer = ({ video }) => {
             ...options,
             controls: !options.controls,
             url: null
-        }, () => this.load(url))
-    }
-
-    const handleToggleLight = () => {
-        setoptions({ ...options, light: !options.light })
-    }
-
-    const handleToggleLoop = () => {
-        setoptions({ ...options, loop: !options.loop })
+        }, () => load(url))
     }
 
     const handleVolumeChange = e => {
@@ -77,19 +74,10 @@ export const VideoPlayer = ({ video }) => {
         setoptions({ ...options, muted: !options.muted })
     }
 
-    const handleSetPlaybackRate = e => {
-        setoptions({ ...options, playbackRate: parseFloat(e.target.value) })
-    }
-
-    const handleOnPlaybackRateChange = (speed) => {
-        setoptions({ ...options, playbackRate: parseFloat(speed) })
-    }
-
     const handlePause = () => {
         console.log('onPause')
         setoptions({ ...options, playing: false })
     }
-
 
     const handleSeekMouseDown = e => {
         setoptions({ ...options, seeking: true })
@@ -99,15 +87,14 @@ export const VideoPlayer = ({ video }) => {
     }
     const handleSeekMouseUp = e => {
         setoptions({ ...options, seeking: false })
-        playerRef.seekTo(parseFloat(e.target.value))
+        playerRef.current.seekTo(parseFloat(e.target.value))
     }
 
     const handleProgress = state => {
         console.log('onProgress', state)
         // We only want to update time slider if we are not currently seeking
-        if (!options.seeking) {
-            setoptions({ ...options, state })
-        }
+        //if (!options.seeking) {
+        setoptions({ ...options, state })
     }
     const handleEnded = () => {
         console.log('onEnded')
@@ -118,10 +105,38 @@ export const VideoPlayer = ({ video }) => {
         console.log('onDuration', duration)
         setoptions({ ...options, duration })
     }
+    const TimeParser = (seconds = 0) => {
+        let min = Math.floor(seconds / 60);
+        min = (min < 10) ? '0' + min : min;
+        let sec = Math.trunc(seconds % 60);
+        sec = (sec < 10) ? '0' + sec : sec;
 
-    const handleClickFullscreen = () => {
-        screenfull.request(findDOMNode(playerRef))
+        /* console.log("minutes", min);
+        console.log("seconds", sec); */
+        return (seconds) ? `${min}:${sec}` : `00:00`
     }
+    const TimeRemain = (seconds = 0, duration = 0) => {
+        const remain = Math.abs(seconds - duration);
+        let min = Math.floor(remain / 60);
+        min = (min < 10) ? '0' + min : min;
+        let sec = Math.trunc(remain % 60);
+        sec = (sec < 10) ? '0' + sec : sec;
+
+        return `${min}:${sec}`;
+
+    }
+    const handleClickFullscreen = () => {
+        screenfull.request(findDOMNode(playerRef.current))
+    }
+    /* const handleCurrentTime= () => {
+        let hour = Math.floor(seconds / 3600);
+        hour = (hour < 10)? '0' + hour : hour;
+        let minute = Math.floor(seconds / 60);
+        minute = (minute < 10)? '0' + minute : minute;
+        let second = seconds % 60;
+        second = (second < 10)? '0' + second : second;
+        return {minute,second};
+    } */
 
     useEffect(() => {
         window.addEventListener("orientationchange", function () {
@@ -143,7 +158,7 @@ export const VideoPlayer = ({ video }) => {
                     <span>Back</span>
                 </div>
             </div>
-            <ReactPlayer ref={playerRef} className="player-react" url={`${video.video}`} width={orientation === 0 ? `100vw` : `100vh`} height={orientation === 0 ? `100vh` : `100vw`} playing={options.playing}
+            <ReactPlayer ref={playerRef} className="player-react" url={`${video.video}`} width={orientation === 0 ? `100vh` : `100vh`} height={orientation === 0 ? `100vw` : `100vw`} playing={options.playing}
                 controls={options.controls}
                 playbackRate={options.playbackRate}
                 volume={options.volume}
@@ -153,7 +168,6 @@ export const VideoPlayer = ({ video }) => {
                 onPlay={handlePlay}
                 onPause={handlePause}
                 onBuffer={() => console.log('onBuffer')}
-                onPlaybackRateChange={handleOnPlaybackRateChange}
                 onSeek={e => console.log('onSeek', e)}
                 onEnded={handleEnded}
                 onError={e => console.log('onError', e)}
@@ -163,7 +177,16 @@ export const VideoPlayer = ({ video }) => {
             <Controlls
                 props={video}
                 options={options}
-                handlePlay={handlePlayPause}
+                handlePlayPause={handlePlayPause}
+                handleVolumeChange={handleVolumeChange}
+                handleToggleNavigate={handleToggleNavigate}
+                handleSeekMouseUp={handleSeekMouseUp}
+                handleSeekChange={handleSeekChange}
+                handleSeekMouseDown={handleSeekMouseDown}
+                handleProgress={handleProgress}
+                handleDuration={handleDuration}
+                TimeParser={TimeParser}
+                TimeRemain={TimeRemain}
             />
         </div>
     );

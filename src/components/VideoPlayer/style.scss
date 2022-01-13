@@ -6,6 +6,7 @@ $mediumFontsize: 48px;
   }
 }
 .player-wraper {
+  background: var(--bs-gray-700);
   position: fixed;
   z-index: 9;
   @media (orientation: landscape) {
@@ -21,7 +22,7 @@ $mediumFontsize: 48px;
     height: max-content;
     transform-origin: top center;
     transform: rotate(90deg);
-    left: 10%;
+    left: 20%;
     top: 50%;
     .player-react {
       width: 100vh;
@@ -47,6 +48,32 @@ $mediumFontsize: 48px;
       width: 100%;
       & * {
         width: 100%;
+      }
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        input[type="range"] {
+          overflow: hidden;
+          // width: 80px;
+          -webkit-appearance: none;
+          height: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+          height: 10px;
+          width: 1rem;
+          -webkit-appearance: none;
+          color: var(--bs-primary);
+          margin-top: -1px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+          width: 1rem;
+          //cursor: ew-resize;
+          //background: var(--bs-primary);
+          box-shadow: -100vw 0 0 100vw var(--bs-primary);
+        }
+      }
+      input[type="range"]::-moz-range-progress {
+        background-color: var(--bs-primary);
       }
       /*       input[type="range"] {
         -webkit-appearance: none;
@@ -189,7 +216,34 @@ $mediumFontsize: 48px;
           @include spanSizer($mediumFontsize);
         }
       }
-      .over-all-settings {
+      .overall-settings {
+        .list-capitules {
+        }
+        .volumen {
+          .volumen-controll {
+            position: relative;
+            left: -200%;
+            top: -78px;
+            z-index: 11;
+            input[class="form-range"] {
+              position: absolute;
+              transform: rotate(270deg);
+              transform-origin: bottom;
+              top: 0;
+              width: max-content;
+              height: fit-content;
+            }
+          }
+          span {
+            cursor: pointer;
+          }
+        }
+        .subtitles {
+        }
+        .full-view {
+          font-size: 20px;
+          line-height: 20px;
+        }
       }
     }
   }

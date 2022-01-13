@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 /* cONTROLLS */
-export const Controlls = ({ props, options, handlePlayPause }) => {
-    console.log(options)
+export const Controlls = ({ props, options, handlePlayPause, handleVolumeChange, handleToggleNavigate, handleSeekMouseDown, handleSeekChange, handleSeekMouseUp, TimeParser, handleDuration, TimeRemain }) => {
+    const [volumen, setvolumen] = useState(false);
+
+    const handleVolumen = () => {
+        setvolumen(!volumen);
+    }
+
+
     const { title, number } = props;
     return (
         <div className='controlls d-flex flex-column w-100 position-absolute'>
@@ -11,11 +17,18 @@ export const Controlls = ({ props, options, handlePlayPause }) => {
                 <input
                     type='range' min={0} max={0.999999} step='any'
                     className='form-range'
+                    value={options.state ? options.state.played : 0}
+                    onMouseDown={handleSeekMouseDown}
+                    onChange={handleSeekChange}
+                    onMouseUp={handleSeekMouseUp}
+                    disabled={options.navigate ? true : false}
                 />
             </div>
             <div className='play-controlls d-flex flex-row '>
                 <div className='capitule d-flex flex-row  align-items-center'>
-                    <div className='time-lapse'>00:00</div>
+                    <div className='time-lapse'>
+                        {TimeParser(options.state?.playedSeconds)}
+                    </div>
                     <div className='episode-info'>
                         <div className='name'>{title ? title : "titulo no disponible"}</div>
                         <div className='number'>{`capitulo ${number}`}</div>
@@ -50,7 +63,10 @@ export const Controlls = ({ props, options, handlePlayPause }) => {
                         </span>
                     </div>
                     <div className='volumen'>
-                        <span className="material-icons">
+                        <div className={volumen && options.navigate ? `volumen-controll visible` : `volumen-controll invisible`}>
+                            <input className='form-range' type='range' min={0} max={1} step='any' value={options.volume} onChange={handleVolumeChange} />
+                        </div>
+                        <span className="material-icons" onClick={() => { handleToggleNavigate(); handleVolumen(); }}>
                             volume_up
                         </span>
                     </div>
@@ -60,7 +76,7 @@ export const Controlls = ({ props, options, handlePlayPause }) => {
                         </span>
                     </div>
                     <div className='full-view'>
-                        00:00
+                        {TimeRemain(options.state?.playedSeconds, options.duration)}
                     </div>
                 </div>
             </div>
