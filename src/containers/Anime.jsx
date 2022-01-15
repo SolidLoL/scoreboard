@@ -1,40 +1,45 @@
-import React, { Fragment, useContext,useEffect,useState } from "react";
+import React, { Fragment, useContext, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
+import Context from "@context/AppContext";
 import { Loading } from "@components/Loading";
-import { AppContext } from "@context/AppContext";
 import { AnimeInfo } from "@components/AnimeInfo";
+import useListOfCapitules from "@hooks/useListOfCapitules";
 import { ListOfCapitules } from "@components/ListOfCapitules";
 
-const Anime = () => {
-  const [data, setData] = useState({})
-  const params = useParams();
-  const {animes, sources} = useContext(AppContext);
+import useSearchAnime from "@hooks/useSearchAnime";
 
-  useEffect(() => {
-    if (animes) {
-      animes.find((a)=>{
-        if (a.id == params.id) {
-          a.sources = {
-            id: a.id,
-            locale: sources[0]["i18n"],
-            source: sources[0].name,
-          }
-          setData(a)
-        }
-      })
-    }
-  }, [setData])
+const Anime = () => {
+  const { id } = useParams();
+  const { animes, setselectedAnime, setnavigation, setcapitules } =
+    useContext(Context);
 
   // Busca si se encuentra el anime en el context si no se encuentra tendria que buscarlo en el API con useAnime info({params=[ id del anime]})
- 
+
+  const animeInList = useSearchAnime(animes?.animes, id);
+  const { listOfCapitules, loading } = useListOfCapitules(
+    animes?.sources[0],
+    id
+  );
+
+  useEffect(() => {
+    setnavigation(false);
+    setselectedAnime(animeInList);
+    if (loading) {
+      setcapitules(listOfCapitules);
+    }
+  }, [loading, listOfCapitules]);
 
   return (
     <Fragment>
-      {Object.entries(data).length > 0 ? (
-        <Fragment>
-          <AnimeInfo data={data} />
-          <ListOfCapitules data={data} />
-        </Fragment>
+      {loading ? (
+        <>
+          <AnimeInfo anime={animeInList} />
+          <ListOfCapitules
+            anime={animeInList}
+            sources={animes?.sources}
+            listOfCapitules={listOfCapitules}
+          />
+        </>
       ) : (
         <Loading />
       )}

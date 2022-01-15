@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useReducer } from 'react'
 import { findDOMNode } from 'react-dom'
 import { useNavigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
@@ -7,6 +7,7 @@ import screenfull from "screenfull";
 import "./style.scss";
 
 export const VideoPlayer = ({ video }) => {
+
 
     const [options, setoptions] = useState({
         url: null,
@@ -26,7 +27,6 @@ export const VideoPlayer = ({ video }) => {
     })
 
     const [orientation, setorientation] = useState(0)
-    //const [play, setplay] = useState(false);
     const navigate = useNavigate();
     const playerRef = useRef(null);
 
@@ -128,15 +128,6 @@ export const VideoPlayer = ({ video }) => {
     const handleClickFullscreen = () => {
         screenfull.request(findDOMNode(playerRef.current))
     }
-    /* const handleCurrentTime= () => {
-        let hour = Math.floor(seconds / 3600);
-        hour = (hour < 10)? '0' + hour : hour;
-        let minute = Math.floor(seconds / 60);
-        minute = (minute < 10)? '0' + minute : minute;
-        let second = seconds % 60;
-        second = (second < 10)? '0' + second : second;
-        return {minute,second};
-    } */
 
     useEffect(() => {
         window.addEventListener("orientationchange", function () {

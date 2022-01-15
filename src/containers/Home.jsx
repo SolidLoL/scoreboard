@@ -1,15 +1,23 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useContext, useEffect } from "react";
+import { FlyCard } from "@components/FlyCard";
+import { AnimeList } from "@components/AnimeList";
+import Context from "@context/AppContext";
 
-import { FlyCard } from '@components/FlyCard';
-import {AnimeList} from '@components/AnimeList';
-
-console.log("ruta HOME")
-
-export const Home = () => {return (
+export const Home = () => {
+  const { animes, navigation, setnavigation } = useContext(Context);
+  const selectFirstAnime =
+    Object.entries(animes).length > 0 ? animes.animes[0] : {};
+  useEffect(() => {
+    if (!navigation) {
+      setnavigation(true);
+    }
+  }, [navigation]);
+  return (
     <Fragment>
-        <FlyCard/>
-        <AnimeList />
+      <FlyCard anime={selectFirstAnime} catalog={animes?.catalog} />
+      <AnimeList animelist={animes?.animes} />
     </Fragment>
-)};
+  );
+};
 
 //  export default Home;

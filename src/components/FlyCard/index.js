@@ -1,21 +1,21 @@
 import React, { useContext, Fragment } from "react";
-import { AppContext } from "@context/AppContext";
 import { Stars } from "@components/Stars";
 import { Button } from "@components/Button";
-import {useWindowSize} from '@hooks/useWindowSize';
+import { useWindowSize } from '@hooks/useWindowSize';
+import { Spinner } from '@components/Spinner'
 import "./style.scss";
 
-export const FlyCard = () => {
-  const animes = useContext(AppContext);
-  const first = animes.animes[1];
+export const FlyCard = ({ anime, catalog }) => {
+
+  const isEmpty = Object.entries(anime).length;
   const info =
-    first.descriptions.en.length > 0
-      ? first.descriptions.en
-      : first.descriptions.it;
-  const first3 = first.genres.slice(0, 3);
+    anime.descriptions?.en.length > 0
+      ? anime.descriptions?.en
+      : anime.descriptions?.it;
+  const selectAnimeGenres = anime.genres?.slice(0, 3);
 
   const window = useWindowSize();
-    let coverImage = (window.width > 768)? first.banner_image: first.cover_image;
+  let coverImage = (window.width > 768) ? anime.banner_image : anime.cover_image;
   const TheLine = () => (
     <svg
       width="2"
@@ -30,57 +30,61 @@ export const FlyCard = () => {
   );
 
   return (
-    <div
-      className="fly-card"
-      style={{ backgroundImage: `url(${coverImage})` }}
-    >
-      <div className="title">{first.titles.en}</div>
-      <div className="stars-fly">
-        <Stars score={first.score} />
-      </div>
-      <div className="info">
-        <div className="type">
-          {animes.catalog[first?.format]}{" "}
-          <span>
-            <TheLine />
-          </span>{" "}
-          {first?.episodes_count} episodes
-        </div>
-        <div className="a-info">{info}</div>
-        <div className="genres">
-          {first3.map((element, i) => {
-            switch (i) {
-              case 1:
-                return (
-                  <Fragment key={i}>
-                    <span>{element}</span>
-                    <TheLine />
-                  </Fragment>
-                );
-                break;
-              case 2:
-                return (
-                  <Fragment key={i}>
-                    <span>{element}</span>
-                  </Fragment>
-                );
-                break;
-              default:
-                return (
-                  <Fragment key={i}>
-                    <span>{element}</span>
-                    <TheLine />
-                  </Fragment>
-                );
-                break;
-            }
-          })}
-        </div>
-      </div>
-      <div className="actions d-flex flex-sm-row flex-column align-items-center w-100">
-          <Button type={"primary w-100 my-3 my-sm-0 me-sm-3"} title={"Watch Anime"} url={`anime/${first.id}/1`}/>
-          <Button type={"outline-primary w-100"} title={"Detail"} url={`anime/${first.id}`}/>
-      </div>
-    </div>
+    <>
+      {isEmpty > 0 ?
+        (<div
+          className="fly-card position-relative container-fluid vh-100 d-flex flex-column justify-content-end align-items-start overflow-hidden"
+          style={{ backgroundImage: `url(${coverImage})` }}
+        >
+          <div className="title">{anime.titles?.en}</div>
+          <div className="stars-fly">
+            <Stars score={anime.score} />
+          </div>
+          <div className="info">
+            <div className="type">
+              {catalog[anime?.format]}{" "}
+              <span>
+                <TheLine />
+              </span>{" "}
+              {anime?.episodes_count} episodes
+            </div>
+            <div className="a-info text-wrap text-break">{info}</div>
+            <div className="genres">
+              {selectAnimeGenres.map((element, i) => {
+                switch (i) {
+                  case 1:
+                    return (
+                      <Fragment key={i}>
+                        <span>{element}</span>
+                        <TheLine />
+                      </Fragment>
+                    );
+                    break;
+                  case 2:
+                    return (
+                      <Fragment key={i}>
+                        <span>{element}</span>
+                      </Fragment>
+                    );
+                    break;
+                  default:
+                    return (
+                      <Fragment key={i}>
+                        <span>{element}</span>
+                        <TheLine />
+                      </Fragment>
+                    );
+                    break;
+                }
+              })}
+            </div>
+          </div>
+          <div className="actions container d-flex flex-sm-row flex-column align-items-center w-100 mx-0">
+            <Button type={"primary w-100 my-3 my-sm-0 me-sm-3"} title={"Watch Anime"} url={`anime/${anime.id}/1`} />
+            <Button type={"outline-primary w-100"} title={"Detail"} url={`anime/${anime.id}`} />
+          </div>
+        </div>) : (<Spinner />)
+      }
+    </>
   );
 };

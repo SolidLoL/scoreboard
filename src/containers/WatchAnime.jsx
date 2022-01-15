@@ -1,22 +1,36 @@
-import React, { useContext, useEffect } from "react";
-import { useParams} from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Spinner } from "@components/Spinner";
-import {VideoPlayer} from "@components/VideoPlayer"
+import { VideoPlayer } from "@components/VideoPlayer";
+import Context from "@context/AppContext";
 import useCapitule from "@hooks/useCapitule";
+
+const useSearchAnimeById = (listofCapitules, id) => {
+  const [result, setresult] = useState({});
+
+  useEffect(() => {
+    if (listofCapitules) {
+      listofCapitules.find((a) => {
+        if (a.number == id) {
+          setresult(a);
+        }
+      });
+    }
+  }, []);
+  return result;
+};
 
 const WhatchAnime = () => {
   const { id, episode } = useParams();
-  //const { state } = ;
-  // const [data, setData] = useState({});
-  const storage = localStorage.getItem('capitule');
-  const capitule = !(storage)? useCapitule(id,episode).shift() : JSON.parse(storage);
-  
+  const { capitules } = useContext(Context);
+  const selectedEpisode = useSearchAnimeById(capitules, episode);
+
+  console.log(selectedEpisode);
+
   return (
-      <>
-      { !capitule ? <Spinner /> : 
-        <VideoPlayer video={capitule} />
-       }
-      </>
+    <>
+      {!selectedEpisode ? <Spinner /> : <VideoPlayer video={selectedEpisode} />}
+    </>
   );
 };
 

@@ -1,40 +1,30 @@
 .fly-card {
-  position: relative;
-  z-index: 0;
-  top: -72px;
-  margin: 0 0 -60px;
-  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  color: white;
+  z-index: 0;
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
-  align-content: stretch;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 32px;
+  background-repeat: no-repeat;
+  background-size: cover;
   & > * {
-    margin: 1rem;
-    z-index: 2;
-    max-width: 575px;
+    margin-bottom: 2rem;
+    max-width: 575px !important;
+    z-index: 1;
   }
   .title {
-    font-family: 'Rock Salt';
+    font-family: "Rock Salt";
     font-size: 36px;
     text-overflow: ellipsis;
     white-space: pre-line;
-    height: 110px;
+    height: fit-content;
+    max-height: 110px;
     overflow: hidden;
   }
 
   .stars-fly {
-      & > *{
-        font-size: 40px;
-      }
+    & > * {
+      font-size: 40px;
+    }
   }
   .info {
     .type {
@@ -42,16 +32,16 @@
       font-size: 20px;
       line-height: 24px;
       display: flex;
-      span{
+      span {
         display: flex;
-        svg{
-            margin: 0 1rem;
+        svg {
+          margin: 0 1rem;
         }
       }
     }
     .a-info {
       width: auto;
-      max-height: 60px;
+      max-height: 40px;
       margin: 1rem 0;
       overflow: hidden;
       font-size: 16px;
@@ -64,12 +54,12 @@
       flex-grow: 0;
     }
     .genres {
-        font-size: 20px;
-        text-align: center;
-        display: flex;
-        svg{
-            margin: 0 1rem;
-        }
+      font-size: 20px;
+      text-align: center;
+      display: flex;
+      svg {
+        margin: 0 1rem;
+      }
     }
   }
 
@@ -77,8 +67,15 @@
     content: "";
     width: 100%;
     height: 100%;
-    background: linear-gradient(270.98deg, rgba(20, 14, 18, 0.98) -0.05%, rgba(23, 23, 20, 0) -0.04%, rgba(19, 18, 18, 0.742324) 45.11%, rgba(19, 17, 18, 0.89008) 65.45%, rgba(18, 16, 18, 0.991849) 85.22%);
-    z-index: 1;
+    background: linear-gradient(
+      270.98deg,
+      rgba(20, 14, 18, 0.98) -0.05%,
+      rgba(23, 23, 20, 0) -0.04%,
+      rgba(19, 18, 18, 0.742324) 45.11%,
+      rgba(19, 17, 18, 0.89008) 65.45%,
+      rgba(18, 16, 18, 0.991849) 85.22%
+    );
+    z-index: 0;
     position: absolute;
     bottom: 0;
     left: 0;

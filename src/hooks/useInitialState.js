@@ -11,7 +11,7 @@ const SOURCES_API = "https://api.aniapi.com/v1/resources";
 
 const useInitialState = () => {
   const [anime, setAnime] = useState([]);
-  
+
   useEffect(async () => {
     const responseAPI = await axios(API);
     const query = `${SOURCES_API}/${V}/${SOUR}`;
@@ -22,15 +22,15 @@ const useInitialState = () => {
       animes: {},
       localization: {},
       genres: {},
-      catalog:{
-        0:"TV" ,
-        1:"TV_SHORT",
-        2:"MOVIE",
-        3:"SPECIAL",
-        4:"OVA",
-        5:"ONA",
-        6:"MUSIC"
-      }
+      catalog: {
+        0: "TV",
+        1: "TV_SHORT",
+        2: "MOVIE",
+        3: "SPECIAL",
+        4: "OVA",
+        5: "ONA",
+        6: "MUSIC"
+      },
     };
     //qUERY Data 
     const AsyncData = await axios(query);

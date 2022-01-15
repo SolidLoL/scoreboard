@@ -4,14 +4,13 @@ import useInitialState from "@hooks/useInitialState";
 import { Layout } from "@components/Layout";
 import { Home } from "@containers/Home.jsx";
 import { NotFound } from "@containers/NotFound.jsx";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "@context/AppContext";
 import { Loading } from "@components/Loading";
 import "@styles/global.scss";
 // import ErrorBoundary from "./ErrorBoundary";
 
 const AsyncAnimeContainer = React.lazy(() => import("@containers/Anime.jsx"));
 const AsyncAnimeWhatch = React.lazy(() => import("@containers/WatchAnime.jsx"));
-
 
 const App = () => {
   const initialState = useInitialState();
@@ -20,19 +19,22 @@ const App = () => {
     <>
       {isEmpty > 0 ? (
         <Suspense fallback={<Loading />}>
-          <AppContext.Provider value={initialState}>
+          <AppContext initialState={initialState}>
             <BrowserRouter>
               <Layout>
                 <Routes>
                   <Route exact path="/" element={<Home />} />
-                  <Route path="anime/:id" element={<AsyncAnimeContainer />}/>
-                  <Route path="anime/:id/:episode" element={<AsyncAnimeWhatch/>} />
+                  <Route path="anime/:id" element={<AsyncAnimeContainer />} />
+                  <Route
+                    path="anime/:id/:episode"
+                    element={<AsyncAnimeWhatch />}
+                  />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Outlet />
               </Layout>
             </BrowserRouter>
-          </AppContext.Provider>
+          </AppContext>
         </Suspense>
       ) : (
         <Loading />

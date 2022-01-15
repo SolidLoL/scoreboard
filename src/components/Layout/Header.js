@@ -1,10 +1,13 @@
-import React from 'react'
-import {Navigation} from '@components/Navigation';
+import React, { useContext } from 'react'
+import { Navigation } from '@components/Navigation';
+import Context from "@context/AppContext";
+export const Header = () => {
+    const { navigation } = useContext(Context);
 
-export  const Header = (props)=>{
+    const VisibleNavigation = navigation ? `d-block` : `d-none`;
     return (
-        <div className="Header">
-            <Navigation/>
+        <div className={`header ${VisibleNavigation}`} >
+            <Navigation />
         </div>
     )
 }

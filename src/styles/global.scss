@@ -1,21 +1,19 @@
-@import 'vars';
+@import "vars";
 @import "~bootstrap/scss/bootstrap";
 
-
 @font-face {
-  font-family: 'Rubik',  'Rock Salt';
+  font-family: "Rubik", "Rock Salt";
   font-weight: 500;
 }
 
-body{
-    #app{
-        .Header{
-            position: relative;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            height: auto;
-        }
+body {
+  #app {
+    .header {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: auto;
     }
+  }
 }
-
