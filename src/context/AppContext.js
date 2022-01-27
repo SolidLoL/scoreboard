@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 
 const Context = React.createContext({})
 
@@ -11,6 +11,7 @@ export function AppContext({ children, initialState }) {
     useEffect(() => {
         setanimes(initialState)
     }, [initialState])
+
 
     return <Context.Provider value={{ animes, setanimes, navigation, setnavigation, selectedAnime, setselectedAnime, capitules, setcapitules }}>
         {children}

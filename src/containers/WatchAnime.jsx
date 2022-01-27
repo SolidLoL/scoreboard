@@ -5,7 +5,7 @@ import { VideoPlayer } from "@components/VideoPlayer";
 import Context from "@context/AppContext";
 import useCapitule from "@hooks/useCapitule";
 
-const useSearchAnimeById = (listofCapitules, episode, id) => {
+const useSearchAnimeById = (listofCapitules, episode) => {
   const [result, setresult] = useState({});
   useEffect(() => {
     if (Object.entries(listofCapitules).length > 0) {
@@ -20,18 +20,27 @@ const useSearchAnimeById = (listofCapitules, episode, id) => {
 };
 
 const WhatchAnime = () => {
-  const { id, episode } = useParams();
+  const [capitule, setcapitule] = useState({});
+  const { episode } = useParams();
   const { capitules } = useContext(Context);
-  const selectedEpisode = capitules
-    ? useSearchAnimeById(capitules, episode, id)
-    : useCapitule(episode, id);
+  const searchFromContext = useSearchAnimeById(capitules, episode);
+
+  useEffect(() => {
+    if (Object.entries(capitules).length > 0) {
+      capitules.find((a) => {
+        if (a.number == episode) {
+          setcapitule(a);
+        }
+      });
+    }
+  }, [capitules]);
 
   return (
     <>
-      {Object.entries(selectedEpisode).length > 0 ? (
-        <Spinner />
+      {Object.entries(capitule).length > 0 ? (
+        <VideoPlayer video={searchFromContext} />
       ) : (
-        <VideoPlayer video={selectedEpisode} />
+        <Spinner />
       )}
     </>
   );

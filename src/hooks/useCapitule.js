@@ -9,12 +9,24 @@ const useCapitule = (id, episode) => {
   useEffect(async () => {
     const API = `https://api.aniapi.com/v1/episode?anime_id=${id}&number=${episode}`;
 
-    const responseAPI = await axios(API);
-    //Asign data to response
-    const { documents } = responseAPI.data?.data;
+    try {
+      const response = await axios.get(API);
+      const { status_code } = response?.data;
+      if (status_code != 404) {
+        const { documents } = response.data?.data;
+        setAnime(documents)
+        console.log(documents);
+      }
+    } catch (error) {
+      console.error("capitulo no disponible", error);
+    }
 
-    //setAnime(response.data);
-    setAnime(documents);
+    /*  const responseAPI = await axios(API);
+     //Asign data to response
+     const { documents } = responseAPI.data?.data;
+ 
+     //setAnime(response.data);
+     setAnime(documents); */
   }, []);
 
   return anime;

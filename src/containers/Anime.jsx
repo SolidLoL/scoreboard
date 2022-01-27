@@ -24,9 +24,7 @@ const Anime = () => {
   useEffect(() => {
     setnavigation(false);
     setselectedAnime(animeInList);
-    if (loading) {
-      setcapitules(listOfCapitules);
-    }
+    setcapitules(listOfCapitules);
   }, [loading, listOfCapitules]);
 
   return (

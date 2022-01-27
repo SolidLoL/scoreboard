@@ -8,14 +8,15 @@ import "./style.scss";
 export const FlyCard = ({ anime, catalog }) => {
 
   const isEmpty = Object.entries(anime).length;
-  const info =
-    anime.descriptions?.en.length > 0
-      ? anime.descriptions?.en
-      : anime.descriptions?.it;
-  const selectAnimeGenres = anime.genres?.slice(0, 3);
+  const { descriptions, banner_image, cover_image, genres,
+    titles, score, format, episodes_count } = anime;
 
+  const info = (descriptions?.en?.length > 0)
+    ? descriptions?.en
+    : descriptions?.it || <></>;
+  const selectAnimeGenres = genres?.slice(0, 3);
   const window = useWindowSize();
-  let coverImage = (window.width > 768) ? anime.banner_image : anime.cover_image;
+  let coverImage = (window.width > 768) ? banner_image : cover_image;
   const TheLine = () => (
     <svg
       width="2"
@@ -36,17 +37,17 @@ export const FlyCard = ({ anime, catalog }) => {
           className="fly-card position-relative container-fluid vh-100 d-flex flex-column justify-content-end align-items-start overflow-hidden"
           style={{ backgroundImage: `url(${coverImage})` }}
         >
-          <div className="title">{anime.titles?.en}</div>
+          <div className="title">{titles?.en}</div>
           <div className="stars-fly">
-            <Stars score={anime.score} />
+            <Stars score={score} />
           </div>
           <div className="info">
             <div className="type">
-              {catalog[anime?.format]}{" "}
+              {catalog[format]}{" "}
               <span>
                 <TheLine />
               </span>{" "}
-              {anime?.episodes_count} episodes
+              {episodes_count} episodes
             </div>
             <div className="a-info text-wrap text-break">{info}</div>
             <div className="genres">

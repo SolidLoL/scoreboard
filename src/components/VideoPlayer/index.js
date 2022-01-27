@@ -7,7 +7,7 @@ import screenfull from "screenfull";
 import "./style.scss";
 
 export const VideoPlayer = ({ video }) => {
-
+    console.log(video);
     const [options, setoptions] = useState({
         url: null,
         pip: false,
@@ -136,7 +136,6 @@ export const VideoPlayer = ({ video }) => {
             }
         }, false);
     }, [])
-
     return (
         <div className='player-wraper'>
             <div className='back position-absolute w-100' >
