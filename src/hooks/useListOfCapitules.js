@@ -13,7 +13,6 @@ const useListOfCapitules = (source, id) => {
       setLoading(true);
       const responseAPI = await axios(API);
       const response = responseAPI.data?.data?.documents || {};
-
       if (Object.entries(response).length > 0) {
         setlistOfCapitules(response);
       }

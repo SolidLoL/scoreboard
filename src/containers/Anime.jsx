@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useCallback } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Context from "@context/AppContext";
 import { Loading } from "@components/Loading";
@@ -10,7 +10,7 @@ import useSearchAnime from "@hooks/useSearchAnime";
 
 const Anime = () => {
   const { id } = useParams();
-  const { animes, setselectedAnime, setnavigation, setcapitules } =
+  const { animes, setselectedAnime, setnavigation, capitules, setcapitules } =
     useContext(Context);
 
   // Busca si se encuentra el anime en el context si no se encuentra tendria que buscarlo en el API con useAnime info({params=[ id del anime]})

@@ -16,8 +16,8 @@ const useCapitule = (id, episode) => {
     //setAnime(response.data);
     setAnime(documents);
   }, []);
-  return anime;
 
+  return anime;
 }
 
 export default useCapitule;

@@ -8,7 +8,6 @@ import "./style.scss";
 
 export const VideoPlayer = ({ video }) => {
 
-
     const [options, setoptions] = useState({
         url: null,
         pip: false,
