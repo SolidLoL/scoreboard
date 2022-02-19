@@ -1,0 +1,13 @@
+.btn-primary{
+    //color: var(--bs-white) !important;
+    &:hover{
+        filter: brightness(1.3);
+    }
+}
+.btn-outline-primary{
+    //color: var(--bs-gray-300) !important;
+    &:hover{
+        background-color: transparent !important;
+        filter: brightness(1.2);
+    }
+}

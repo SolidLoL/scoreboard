@@ -1,6 +1,6 @@
 .fly-card {
   position: relative;
-  z-index: -1;
+  z-index: 0;
   top: -72px;
   margin: 0 0 -60px;
   background-size: cover;
@@ -20,10 +20,15 @@
   & > * {
     margin: 1rem;
     z-index: 2;
+    max-width: 575px;
   }
   .title {
     font-family: 'Rock Salt';
     font-size: 36px;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    height: 110px;
+    overflow: hidden;
   }
 
   .stars-fly {

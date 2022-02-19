@@ -1,30 +1,6 @@
 @import 'vars';
 @import "~bootstrap/scss/bootstrap";
 
-/* Specify your own gutters for every breakpoint. I use media-breakpoint-up so to avoid a default width it's better to always include "xs", and then you can do whatever you want */
-/* $grid-Gutter-widths: (
-  xs: 64px,
-); */
-
-/* You don't need to change anything below */
-/* @each $grid-breakpoint, $grid-Gutter-width in $grid-Gutter-widths {
-  @include media-breakpoint-up($grid-breakpoint) {
-    $grid-Gutter-half-width: $grid-Gutter-width / 2;
-    .row:not(.no-gutters) {
-      margin-right: -$grid-Gutter-half-width;
-      margin-left: -$grid-Gutter-half-width;
-    }
-    .row:not(.no-gutters) > .col,
-    .row:not(.no-gutters) > [class*="col-"] {
-      padding-right: $grid-Gutter-half-width;
-      padding-left: $grid-Gutter-half-width;
-    }
-  }
-} */
-
-
-
-
 
 @font-face {
   font-family: 'Rubik',  'Rock Salt';

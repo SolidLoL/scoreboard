@@ -1,0 +1,8 @@
+.capitules-list{
+    &.grid{
+        display: grid;
+    }
+    grid-template-columns: 
+    repeat(auto-fill, minmax(298px, 1fr));
+    justify-items:center;
+}

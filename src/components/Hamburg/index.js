@@ -13,14 +13,14 @@ const HamburgIcon = () => {
 }
 
 export const Hamburg = () => {
-    const {openMenu, setopenMenu} = useContext(Context)
+    const {openMenu, setopenMenu, search} = useContext(Context)
 
     const handlerOpenMenu = () => {
         setopenMenu(!openMenu);
     }
-    
-     let classMenu = (!openMenu) ? 'menu menu-close' : 'menu menu-open';
+     let visibilitiMenu = (search)? 'invisible':'visible';
+     let classMenu = (!openMenu) ? 'menu-close' : 'menu-open';
 
-    return (<div className={classMenu} onClick={handlerOpenMenu}> <HamburgIcon /></div>)
+    return (<div className={`menu ${classMenu} ${visibilitiMenu}`} onClick={handlerOpenMenu}> <HamburgIcon /></div>)
 }
 
