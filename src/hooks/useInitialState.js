@@ -14,7 +14,7 @@ const useInitialState = () => {
 
   useEffect(async () => {
     const responseAPI = await axios(API);
-    const query = `${SOURCES_API}/${V}/${SOUR}`;
+    //const query = `${SOURCES_API}/${V}/${SOUR}`;
     const genres = `${SOURCES_API}/${V}/${GENRES}`;
     const localization = `${SOURCES_API}/${V}/${LOCALIZATIONS}`;
     const response = {
@@ -33,11 +33,11 @@ const useInitialState = () => {
       },
     };
     //qUERY Data 
-    const AsyncData = await axios(query);
+    //const AsyncData = await axios(query);
     const AsyncGenres = await axios(genres);
     const AsyncLocalization = await axios(localization);
     //Asign data to response
-    response.sources = AsyncData.data.data.sources;
+    //response.sources = AsyncData.data.data.sources;
     response.genres = AsyncGenres.data.data.genres;
     response.localization = AsyncLocalization.data.data.localizations;
     response.animes = responseAPI.data.data.documents;
